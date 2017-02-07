@@ -1,0 +1,22 @@
+public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = {-1, -1};
+        int start = 0;
+        int end = nums.length - 1;
+        while (start < end) {
+            int mid = (start + end) / 2;
+            if (nums[mid] < target) start = mid + 1;
+            else end = mid;
+        }
+        if (nums[start] != target) return result;
+        else result[0] = start;
+        end = nums.length - 1;
+        while (start < end) {
+            int mid = (start + end) / 2 + 1;
+            if (nums[mid] > target) end = mid - 1;
+            else start = mid;
+        }
+        result[1] = end;
+        return result;
+    }
+}
